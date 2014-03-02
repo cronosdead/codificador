@@ -2,16 +2,20 @@ import Str2Bin as s2b
 import binascii
 import numpy as np
 
-s = s2b.Str2Bin('ddshitdos.')
+s = s2b.Str2Bin('ddshitdos')
 n = np.array(s)
-n1 = np.transpose(n)
-(f, c) = n1.shape
-print n, n1
+ns = np.transpose(n)
+
+for i in range(len(ns)):
+	print str(ns[i]).strip('[]')
+	
+cad = ''
+(f, c) = ns.shape
 cad = ''
 aux = []
 for i in range(c):
 	for j in range(f):
-		cad = cad + str(n1[j][i])
+		cad = cad + str(ns[j][i])
 	aux.append(cad)
 	cad = ''
 print aux
