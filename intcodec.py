@@ -9,6 +9,9 @@
 
 import sys
 from qt import *
+import Str2Bin as s2b
+import binascii
+import numpy as np
 
 
 class Form1(QDialog):
@@ -110,7 +113,28 @@ class Form1(QDialog):
 
 
     def code(self):
-        print "Form1.code(): Not implemented yet"
+        e = self.textEdit1.text().ascii()
+        e = s2b.Str2Bin(e)
+        n = np.array(e)
+        print n, len(n)
+        ar = []
+        #ns = np.transpose(n)
+        
+        for i in range(len(n)):
+			vec = np.array([])
+			aux = [0]
+			v = len(n[i])
+			if v < 8:
+				for j in range(8 - v):
+					vec = np.append(n[i], aux)
+					aux.append(0)
+				ar.append(vec)
+			else:
+				ar.append(vec)
+        
+        mat = np.array(ar)
+        mat = np.transpose(mat)				
+       	self.textEdit1_2.setText(str(mat))
 
     def decode(self):
         print "Form1.decode(): Not implemented yet"
